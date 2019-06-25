@@ -1,8 +1,17 @@
+.bgc-silde2 {
+  background: rgba(218, 214, 214, 1);
+}
 .red {
   color: red;
 }
 .white {
   color: white;
+}
+.black {
+  color: black;
+}
+.height200 {
+  height: 200px;
 }
 .font30 {
   font-size: 30px;

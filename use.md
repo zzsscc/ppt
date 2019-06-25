@@ -12,13 +12,61 @@ plugins:
     - katex
     - mermaid: {theme: forest}
 
-<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark .anim">
 
-# test {.text-landing.text-shadow}
+# Decorators{.text-landing.text-shadow}
 
 By zsc {.text-intro}
 
-[:fa-github: Github](https://github.com/zzsscc/decorators){.button.ghost.animated.flipInX.delay-1200}
+[:fa-github: Github](https://github.com/tc39/proposal-decorators){.button.ghost.animated.flipInX.delay-1200}
+
+<!-- slide-2 -->
+<slide class="animated bgc-silde2">
+
+!![](https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=d8bde17f00f79052fb124f6c6d9abcaf/d009b3de9c82d15834a6cbdd890a19d8bc3e42b2.jpg .size-40.alignleft)
+
+TC39是ECMAscript的一部分，是负责推动JavaScript发展、控制ECMAScript版本发布的技术委员会{.tobuild..fadeInUp}
+
+装饰器现在处在Stage 2阶段{.tobuild..fadeInUp}
+
+草案是规范的第一个版本，表明委员会希望它们最终包含在标准的JavaScript编程语言中，与最终标准中包含的特性不会有太大差别，原则上只接受增量修改{.tobuild..fadeInUp}
+
+在TypeScript里已做为一项实验性特性予以支持{.tobuild..fadeInUp}
+
+__设计组正在考虑将该提案重新设计为“static decorators”，当前的提议启用了JavaScript原始装饰器提议的基本功能（例如TypeScript装饰器中可用的大多数功能）。以及[前一个第2阶段提案](https://github.com/tc39/proposal-decorators-previous)的两个额外功能：访问私有字段和方法，以及注册在构造函数期间调用的回调__{.tobuild..fadeIn}
+
+<!-- slide-3 -->
+<slide class="black" image="https://source.unsplash.com/UJbHNoVPZW0/ .light">
+
+:::steps
+
+![](https://source.unsplash.com/uPGOEbjbVGA/800x600){.height200}
+
+1. 导入装饰器时，包含@作为装饰器名称的一部分
+
+2. @foo.bar或@(foo)不再允许
+
+3. 定义装饰器的语法完全不同：使用特殊的“组合装饰器”语法而不是其他装饰器提议中的函数
+
+4. 不包括参数装饰器，但它们可能由未来的内置装饰器提供
+
+---
+
+![](https://source.unsplash.com/IFxjDdqK_0U/800x600){.height200}
+
+1. ~~声明新的私有字段~~
+
+2. ~~类装饰器访问操作类中的所有字段和方法~~
+
+3. ~~基于描述符~~
+
+---
+
+![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561464506961&di=bb6c76718447b23a57d247bfb24b8f06&imgtype=0&src=http%3A%2F%2Ftc.sinaimg.cn%2Fmaxwidth.800%2Ftc.service.weibo.com%2Fimg_boqiicdn_com%2F08ab73fec5a46c0903b253b249c56a0e.jpg){.height200}
+
+__未来的内置装饰器将以更静态可分析的方式添加相同的功能__
+
+:::
 
 <!-- slide-2 -->
 <slide class="bg-black-blue" image="https://source.unsplash.com/n9WPPWiPPJw/">
@@ -37,7 +85,7 @@ A decorator is\: {.tobuild.pulse}
 装饰器允许你在类和类的属性定义的时候去注释或者修改它。装饰器是一个作用于函数的表达式，它接收三个参数 target、 name 和 descriptor ， 然后可选性的返回被装饰之后的 descriptor 对象。 {.aligncenter}
 
 <!-- slide-3 -->
-<slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
 装饰器decorator依赖于ES5的Object.defineProperty方法{.white.font30.text-shadow.aligncenter}
@@ -55,7 +103,7 @@ Object.defineProperty(obj, prop, descriptor)
 ````
 
 <!-- slide-4 -->
-<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
 属性描述符：descriptor{.white.font30.text-shadow}
@@ -72,7 +120,7 @@ Object.defineProperty(obj, prop, descriptor)
 __属性描述符必须是上述两者之一；且不可同时是两者__{.build}
 
 <!-- slide-5 -->
-<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 属性描述符通用键值（即数据描述符和存取描述符都有的键值）：{.white.zoomIn}
 
@@ -81,7 +129,7 @@ __属性描述符必须是上述两者之一；且不可同时是两者__{.build
 {.white.build.zoomIn}
 
 <!-- slide-6 -->
-<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 数据描述符特有的键值：{.white.zoomIn}
 
@@ -122,7 +170,7 @@ Object.defineProperty(o, "a", {
 :::
 
 <!-- slide-7 -->
-<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 存取描述符特有的键值：{.white.zoomIn}
 
@@ -155,7 +203,7 @@ console.info(obj.id, num) // 40 40
 :::
 
 <!-- slide-8 -->
-<slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
 最简单的作用于类的装饰器 {.white.text-shadow}
@@ -191,7 +239,7 @@ console.info(`
 :::
 
 <!-- slide-9 -->
-<slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
 类的装饰器传参 {.white.text-shadow}
@@ -226,7 +274,7 @@ classB.fun()
 ```
 
 <!-- slide-10 -->
-<slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/ .anim">
+<slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
 给修饰类添加实例属性 {.white.text-shadow}
