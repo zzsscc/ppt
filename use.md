@@ -23,20 +23,54 @@ By zsc {.text-intro}
 <!-- slide-2 -->
 <slide class="animated bgc-silde2">
 
+:::header
+相关历史{.white.font30.text-shadow}
+:::
+
+三年多以前，Yehuda Katz 首先提出了装饰器的概念。TypeScript 在 1.5 版本（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。 一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉，或者觉得装饰器是ES7推出的特性。
+
+Babel 第一次实现装饰器是在 v5 版本中，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。Logan Smyth 创建了一个非官方的插件(babel-plugin-transform-decorators-legacy)，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用[旧的装饰器语法](https://github.com/tc39/proposal-decorators-previous)，因为新提案尚未明确。
+
+<!-- slide-3 -->
+<slide class="animated bgc-silde2">
+
+:::header
+相关历史{.white.font30.text-shadow}
+:::
+
+自那时起，Daniel Ehrenberg、Brian Terlson 以及 Yehuda Katz 就一起成为了该提案的共同作者，该提案几乎已被完全重写。当然并非一切事情都已确定，因为至今尚未出现符合规范的实现方式。
+
+Babel 7.0.0 为 @babel/plugin-proposal-decorators 插件引入了新的标识：legacy 选项，其唯一有效值为 true。这种突破性变更是必要的，它为提案从第一阶段到当前阶段平稳过渡作铺垫。
+
+<!-- slide-4 -->
+<slide class="animated bgc-silde2">
+
+:::header
+新提案现状{.white.font30.text-shadow}
+:::
+
 !![](https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=d8bde17f00f79052fb124f6c6d9abcaf/d009b3de9c82d15834a6cbdd890a19d8bc3e42b2.jpg .size-40.alignleft)
 
-TC39是ECMAscript的一部分，是负责推动JavaScript发展、控制ECMAScript版本发布的技术委员会{.tobuild..fadeInUp}
+<!-- TC39是ECMAscript的一部分，是负责推动JavaScript发展、控制ECMAScript版本发布的技术委员会{.tobuild..fadeInUp} -->
 
-装饰器现在处在Stage 2阶段{.tobuild..fadeInUp}
+新提案的装饰器现在处在Stage 2阶段{.tobuild..fadeInUp}
 
 草案是规范的第一个版本，表明委员会希望它们最终包含在标准的JavaScript编程语言中，与最终标准中包含的特性不会有太大差别，原则上只接受增量修改{.tobuild..fadeInUp}
 
-在TypeScript里已做为一项实验性特性予以支持{.tobuild..fadeInUp}
+Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 @babel/plugin-proposal-decorators 插件来提前尝试此功能 🎉{.tobuild..fadeInUp}
 
-__设计组正在考虑将该提案重新设计为“static decorators”，当前的提议启用了JavaScript原始装饰器提议的基本功能（例如TypeScript装饰器中可用的大多数功能）。以及[前一个第2阶段提案](https://github.com/tc39/proposal-decorators-previous)的两个额外功能：访问私有字段和方法，以及注册在构造函数期间调用的回调__{.tobuild..fadeIn}
+在 Babel 7.1.0 中，我们引入了对这个新提案的支持，并且当 @babel/plugin-proposal-decorators 插件被使用时，默认启用。而在 Babel 7.0.0 中如果我们不设置 legacy: true 选项，默认情况下就不能使用该语义（相当于 legacy: false）{.tobuild..fadeInUp}
 
-<!-- slide-3 -->
+新提案同时支持使用装饰器访问实现私有字段（private fields）和私有方法（private methods）。我们尚未在 Babel 中实现此功能（在每个 class 中使用装饰器或私有元素），但我们会很快去出现它{.tobuild..fadeInUp}
+
+__设计组正在考虑将该提案重新设计为“static decorators”__{.tobuild..fadeIn}
+
+<!-- slide-5 -->
 <slide class="black" image="https://source.unsplash.com/UJbHNoVPZW0/ .light">
+
+:::header
+新提案启用了JavaScript原始装饰器提议的基本功能，包括TypeScript装饰器中可用的大多数功能。但还是有一些重要的差异是他们互不兼容{.white.font20}
+:::
 
 :::steps
 
@@ -48,17 +82,19 @@ __设计组正在考虑将该提案重新设计为“static decorators”，当�
 
 3. 定义装饰器的语法完全不同：使用特殊的“组合装饰器”语法而不是其他装饰器提议中的函数
 
-4. 不包括参数装饰器，但它们可能由未来的内置装饰器提供
+4. TypeScript会将所有instance decorators在所有static decorators前运行，此提案将完全基于程序的顺序，无论是静态或实例
 
 ---
 
-![](https://source.unsplash.com/IFxjDdqK_0U/800x600){.height200}
+![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561526096438&di=278f2499eb50e809ac173a3306be3307&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180530%2F9da10880799b46cfb9a44e08f70fb059.jpeg){.height200}
 
-1. ~~声明新的私有字段~~
+1. ~~参数装饰器~~
 
-2. ~~类装饰器访问操作类中的所有字段和方法~~
+2. ~~定义新的私有字段或方法~~
 
-3. ~~基于描述符~~
+3. ~~类装饰器访问操作类中的所有字段和方法~~
+
+4. ~~基于描述符~~
 
 ---
 
@@ -66,9 +102,11 @@ __设计组正在考虑将该提案重新设计为“static decorators”，当�
 
 __未来的内置装饰器将以更静态可分析的方式添加相同的功能__
 
+{.tobuild..fadeInDown}
+
 :::
 
-<!-- slide-2 -->
+<!-- slide-6 -->
 <slide class="bg-black-blue" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 Decorators make it possible to annotate and modify classes and properties at design time.{.text-intro}
@@ -82,9 +120,10 @@ A decorator is\: {.tobuild.pulse}
 {.description.build.ml5percentage}
 
 ---
+
 装饰器允许你在类和类的属性定义的时候去注释或者修改它。装饰器是一个作用于函数的表达式，它接收三个参数 target、 name 和 descriptor ， 然后可选性的返回被装饰之后的 descriptor 对象。 {.aligncenter}
 
-<!-- slide-3 -->
+<!-- slide-7 -->
 <slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -102,7 +141,7 @@ Object.defineProperty(obj, prop, descriptor)
   返回值：被传递给函数的对象
 ````
 
-<!-- slide-4 -->
+<!-- slide-8 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -119,7 +158,7 @@ Object.defineProperty(obj, prop, descriptor)
 
 __属性描述符必须是上述两者之一；且不可同时是两者__{.build}
 
-<!-- slide-5 -->
+<!-- slide-9 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 属性描述符通用键值（即数据描述符和存取描述符都有的键值）：{.white.zoomIn}
@@ -128,7 +167,7 @@ __属性描述符必须是上述两者之一；且不可同时是两者__{.build
 - 2、enumerable：定义了当前操作的这个属性是否可以for...in和Object.key()中被枚举。设为true时，该属性才能出现在对象的枚举属性中。默认值false，即不可被枚举
 {.white.build.zoomIn}
 
-<!-- slide-6 -->
+<!-- slide-10 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 数据描述符特有的键值：{.white.zoomIn}
@@ -169,7 +208,7 @@ Object.defineProperty(o, "a", {
 
 :::
 
-<!-- slide-7 -->
+<!-- slide-11 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 存取描述符特有的键值：{.white.zoomIn}
@@ -202,7 +241,7 @@ console.info(obj.id, num) // 40 40
 
 :::
 
-<!-- slide-8 -->
+<!-- slide-12 -->
 <slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -238,7 +277,7 @@ console.info(`
 
 :::
 
-<!-- slide-9 -->
+<!-- slide-13 -->
 <slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -273,7 +312,7 @@ console.info('classB.b: ', classB.b) // 1
 classB.fun()
 ```
 
-<!-- slide-10 -->
+<!-- slide-14 -->
 <slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -303,7 +342,7 @@ classC.fn()
 classC.logger()
 ```
 
-<!-- slide-11 -->
+<!-- slide-15 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 在redux中我们经常使用react-redux的connect装饰器即为作用于类的装饰器{.white.zoomIn}
@@ -319,7 +358,7 @@ export default connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [o
 
 __接收一个组件作为输入，输出一个新的组件的组件。__{.build}
 
-<!-- slide-12 -->
+<!-- slide-16 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -372,16 +411,16 @@ export default (params = {}) => WrappedComponent => class HOC extends Component 
 }
 ```
 
-<!-- slide-13 -->
+<!-- slide-17 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
-__作用于类方法的装饰器__{.white.zoomIn.font30}
+__作用于类属性、方法的装饰器__{.white.zoomIn.font30}
 
-与装饰类不同，对类方法的装饰本质是操作其描述符{.tobuild}
+与装饰类不同，对类属性、方法的装饰本质是操作其描述符{.tobuild}
 
 可以把此时的装饰器理解成是 Object.defineProperty(obj, prop, descriptor) 的语法糖{.tobuild}
 
-<!-- slide-14 -->
+<!-- slide-18 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -451,7 +490,7 @@ try {
 }
 ```
 
-<!-- slide-15 -->
+<!-- slide-19 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
