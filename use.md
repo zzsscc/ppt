@@ -14,11 +14,18 @@ plugins:
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark .anim">
 
-# Decorators{.text-landing.text-shadow}
+### js装饰器的前世今生{.text-landing.text-shadow}
 
-By zsc {.text-intro}
+By zsc {.text-intro.mt5percentage}
 
 [:fa-github: Github](https://github.com/tc39/proposal-decorators){.button.ghost.animated.flipInX.delay-1200}
+
+<note class="black">
+TC39是ECMAscript的一部分  
+是推动JavaScript发展、控制ECMAScript版本发布的技术委员会  
+其会员都是公司（其中主要是浏览器厂商）  
+TC39 实行的是协商一致的原则：通过一项决议必须得到每一位会员（公司代表）的赞成。
+</note>
 
 <!-- slide-2 -->
 <slide class="animated bgc-silde2">
@@ -27,9 +34,23 @@ By zsc {.text-intro}
 相关历史{.white.font30.text-shadow}
 :::
 
-三年多以前，Yehuda Katz 首先提出了装饰器的概念。TypeScript 在 1.5 版本（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。 一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉，或者觉得装饰器是ES7推出的特性。
+!![](https://yehudakatz.com/content/images/2015/05/Yehuda-Katz-Slack.jpeg .size-20.alignright)
+
+三年多以前，[Yehuda Katz](https://yehudakatz.com/) 首先提出了装饰器的概念。TypeScript 在 1.5 版本（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。 一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉，或者觉得装饰器是ES7推出的特性。[ES2016最终特性](http://2ality.com/2016/01/ecmascript-2016.html)
 
 Babel 第一次实现装饰器是在 v5 版本中，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。Logan Smyth 创建了一个非官方的插件(babel-plugin-transform-decorators-legacy)，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用[旧的装饰器语法](https://github.com/tc39/proposal-decorators-previous)，因为新提案尚未明确。
+
+<note class="black">
+TC39的装饰器提案共3个  
+类和类属性装饰器、函数装饰器、方法参数装饰器，后2个仍处于Stage 0中  
+Decorator只是有望在ES2016推出的，实际上并没有  
+Array.prototype.includes  
+指数运算符  
+提案达到阶段4  
+也只能确保该提案将被包含在标准  
+将其列入下一版本的ECMAScript是可能的  
+但也不是100％肯定
+</note>
 
 <!-- slide-3 -->
 <slide class="animated bgc-silde2">
@@ -40,7 +61,12 @@ Babel 第一次实现装饰器是在 v5 版本中，但由于该提案仍在不�
 
 自那时起，Daniel Ehrenberg、Brian Terlson 以及 Yehuda Katz 就一起成为了该提案的共同作者，该提案几乎已被完全重写。当然并非一切事情都已确定，因为至今尚未出现符合规范的实现方式。
 
-Babel 7.0.0 为 @babel/plugin-proposal-decorators 插件引入了新的标识：legacy 选项，其唯一有效值为 true。这种突破性变更是必要的，它为提案从第一阶段到当前阶段平稳过渡作铺垫。
+Babel 7.0.0 为 @babel/plugin-proposal-decorators 插件引入了新的标识：legacy 选项，其唯一有效值为 true。
+
+<note class="black">
+在 Babel 7.0.0 中如果我们不设置 legacy: true 选项  
+默认情况下就不能使用该语义（相当于 legacy: false）
+</note>
 
 <!-- slide-4 -->
 <slide class="animated bgc-silde2">
@@ -51,19 +77,32 @@ Babel 7.0.0 为 @babel/plugin-proposal-decorators 插件引入了新的标识：
 
 !![](https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=d8bde17f00f79052fb124f6c6d9abcaf/d009b3de9c82d15834a6cbdd890a19d8bc3e42b2.jpg .size-40.alignleft)
 
-<!-- TC39是ECMAscript的一部分，是负责推动JavaScript发展、控制ECMAScript版本发布的技术委员会{.tobuild..fadeInUp} -->
+新提案的装饰器现在处在[Stage 2阶段](https://github.com/tc39/proposals) {.tobuild..fadeInUp}
 
-新提案的装饰器现在处在Stage 2阶段{.tobuild..fadeInUp}
+Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#simple-class-decorator) 插件来提前尝试此功能 🎉{.tobuild..fadeInUp}
 
-草案是规范的第一个版本，表明委员会希望它们最终包含在标准的JavaScript编程语言中，与最终标准中包含的特性不会有太大差别，原则上只接受增量修改{.tobuild..fadeInUp}
-
-Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 @babel/plugin-proposal-decorators 插件来提前尝试此功能 🎉{.tobuild..fadeInUp}
-
-在 Babel 7.1.0 中，我们引入了对这个新提案的支持，并且当 @babel/plugin-proposal-decorators 插件被使用时，默认启用。而在 Babel 7.0.0 中如果我们不设置 legacy: true 选项，默认情况下就不能使用该语义（相当于 legacy: false）{.tobuild..fadeInUp}
+<!-- 在 Babel 7.1.0 中，我们引入了对这个新提案的支持，并且当 @babel/plugin-proposal-decorators 插件被使用时，默认启用。而在 Babel 7.0.0 中如果我们不设置 legacy: true 选项，默认情况下就不能使用该语义（相当于 legacy: false）{.tobuild..fadeInUp} -->
 
 新提案同时支持使用装饰器访问实现私有字段（private fields）和私有方法（private methods）。我们尚未在 Babel 中实现此功能（在每个 class 中使用装饰器或私有元素），但我们会很快去出现它{.tobuild..fadeInUp}
 
 __设计组正在考虑将该提案重新设计为“static decorators”__{.tobuild..fadeIn}
+
+<note>
+这里可以查看当前中各个阶段的提案
+草案是规范的第一个版本  
+表明委员会希望它们最终包含在标准的JavaScript编程语言中  
+与最终标准中包含的特性不会有太大差别  
+原则上只接受增量修改  
+这个阶段开始实验如何实现  
+实现形式包括polyfill  
+实现引擎（提供草案执行本地支持）  
+或者编译转换（例如babel）  
+Object.observe是一个例子  
+当它达到阶段2后，  
+但最终却被撤回了。  
+静态可分析性  
+装饰器只能以相当固定的方式组合，使它们更具静态可分析性。
+</note>
 
 <!-- slide-5 -->
 <slide class="black" image="https://source.unsplash.com/UJbHNoVPZW0/ .light">
@@ -76,25 +115,29 @@ __设计组正在考虑将该提案重新设计为“static decorators”__{.tob
 
 ![](https://source.unsplash.com/uPGOEbjbVGA/800x600){.height200}
 
-1. 导入装饰器时，包含@作为装饰器名称的一部分
+导入装饰器时，包含@作为装饰器名称的一部分
 
-2. @foo.bar或@(foo)不再允许
+@foo.bar或@(foo)不再允许
 
-3. 定义装饰器的语法完全不同：使用特殊的“组合装饰器”语法而不是其他装饰器提议中的函数
+定义装饰器的语法完全不同：使用特殊的“组合装饰器”语法而不是其他装饰器提议中的函数
 
-4. TypeScript会将所有instance decorators在所有static decorators前运行，此提案将完全基于程序的顺序，无论是静态或实例
+TypeScript会将所有instance decorators在所有static decorators前运行，此提案将完全基于程序的顺序，无论是静态或实例
+
+目前Babel转换的装饰器是一个处理所有变化的回调形式，而不是针对不同内置装饰器的不同回调。
+
+目前Babel转换的装饰器将属性描述符传递给回调，并自动应用它，而@register强制您自己获取并设置属性描述符。
 
 ---
 
 ![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561526096438&di=278f2499eb50e809ac173a3306be3307&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180530%2F9da10880799b46cfb9a44e08f70fb059.jpeg){.height200}
 
-1. ~~参数装饰器~~
+~~参数装饰器~~
 
-2. ~~定义新的私有字段或方法~~
+~~定义新的私有字段或方法~~
 
-3. ~~类装饰器访问操作类中的所有字段和方法~~
+~~类装饰器访问操作类中的所有字段和方法~~
 
-4. ~~基于描述符~~
+~~基于描述符~~
 
 ---
 
@@ -102,11 +145,53 @@ __设计组正在考虑将该提案重新设计为“static decorators”__{.tob
 
 __未来的内置装饰器将以更静态可分析的方式添加相同的功能__
 
+@wrap 使用给定函数的返回值替换方法或整个类
+
+@register 创建类后调用回调
+
+@expose 调用一个回调给定函数，以在创建类后访问私有字段或方法
+
+@initialize 在创建类的实例时运行给定的回调
+
 {.tobuild..fadeInDown}
 
 :::
 
+<note>
+不再是表达式  
+该装饰者提案旨在通过努力实现双重目标来改进过去的提案：  
+不仅要使用装饰器，还要编写自己的装饰器应该很容易  
+装饰器应该很快，既可以在转换器中生成良好的代码，也可以在本机JS实现中快速执行  
+不过虽然改变了这么多，甚至几乎重写，但是装饰器的本质没有变
+</note>
+
 <!-- slide-6 -->
+<slide class="black" image="https://source.unsplash.com/UJbHNoVPZW0/ .light">
+
+!![](https://image-static.segmentfault.com/202/537/2025373486-59537ddc13f67_articlex .size-40.alignright)
+
+装饰模式和适配器模式都是 包装模式 (Wrapper Pattern)，它们都是通过封装其他对象达到设计的目的的，但是它们的形态有很大区别。
+
+__适配器模式__ 我们使用的场景比较多，比如连接不同数据库的情况，你需要包装现有的模块接口，从而使之适配数据库 —— 好比你手机使用转接口来适配插座那样；
+
+__装饰模式__ 不一样，仅仅包装现有的模块，使之 “更加华丽” ，并不会影响原有接口的功能 —— 好比你给手机添加一个外壳罢了，并不影响手机原有的通话、充电等功能；
+
+---
+
+更多区别参见： [设计模式——装饰模式（Decorator）](https://blog.csdn.net/zhshulin/article/details/38665187)
+
+<!-- slide-7 -->
+<slide class="black" image="http://imgsrc.baidu.com/forum/w%3D580/sign=f37267146e2762d0803ea4b790ed0849/bd85c8f9d72a60597fb3392d2534349b023bbaf5.jpg .light">
+
+!![](https://image-static.segmentfault.com/173/954/173954262-59537dde6a914_articlex .size-40.alignleft)
+
+以钢铁侠为例，钢铁侠本质是一个人，只是“装饰”了很多武器方才变得那么 NB，不过再怎么装饰他还是一个人{.white}
+
+<note>
+而装饰器就是实现装饰模式的一个方案
+</note>
+
+<!-- slide-8 -->
 <slide class="bg-black-blue" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 Decorators make it possible to annotate and modify classes and properties at design time.{.text-intro}
@@ -119,11 +204,14 @@ A decorator is\: {.tobuild.pulse}
 - and optionally returns a decorator descriptor to install on the target object {.lightSpeedIn}
 {.description.build.ml5percentage}
 
----
+<note class="black">
+装饰器允许你在类和类的属性定义的时候去注释或者修改它  
+装饰器是一个作用于函数的表达式  
+它接收三个参数 target、 name 和 descriptor  
+然后可选性的返回被装饰之后的 descriptor 对象
+</note>
 
-装饰器允许你在类和类的属性定义的时候去注释或者修改它。装饰器是一个作用于函数的表达式，它接收三个参数 target、 name 和 descriptor ， 然后可选性的返回被装饰之后的 descriptor 对象。 {.aligncenter}
-
-<!-- slide-7 -->
+<!-- slide-9 -->
 <slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -141,7 +229,13 @@ Object.defineProperty(obj, prop, descriptor)
   返回值：被传递给函数的对象
 ````
 
-<!-- slide-8 -->
+<note>
+所做的事情就是  
+descriptor 参数  
+它其实也是一个对象
+</note>
+
+<!-- slide-10 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -158,7 +252,7 @@ Object.defineProperty(obj, prop, descriptor)
 
 __属性描述符必须是上述两者之一；且不可同时是两者__{.build}
 
-<!-- slide-9 -->
+<!-- slide-11 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 属性描述符通用键值（即数据描述符和存取描述符都有的键值）：{.white.zoomIn}
@@ -167,7 +261,7 @@ __属性描述符必须是上述两者之一；且不可同时是两者__{.build
 - 2、enumerable：定义了当前操作的这个属性是否可以for...in和Object.key()中被枚举。设为true时，该属性才能出现在对象的枚举属性中。默认值false，即不可被枚举
 {.white.build.zoomIn}
 
-<!-- slide-10 -->
+<!-- slide-12 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 数据描述符特有的键值：{.white.zoomIn}
@@ -208,7 +302,7 @@ Object.defineProperty(o, "a", {
 
 :::
 
-<!-- slide-11 -->
+<!-- slide-13 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 存取描述符特有的键值：{.white.zoomIn}
@@ -241,7 +335,7 @@ console.info(obj.id, num) // 40 40
 
 :::
 
-<!-- slide-12 -->
+<!-- slide-14 -->
 <slide :class="slide-top animated zoomIn delay-200 slow" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -277,7 +371,7 @@ console.info(`
 
 :::
 
-<!-- slide-13 -->
+<!-- slide-15 -->
 <slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -312,7 +406,7 @@ console.info('classB.b: ', classB.b) // 1
 classB.fun()
 ```
 
-<!-- slide-14 -->
+<!-- slide-16 -->
 <slide :class="slide-top animated" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -342,7 +436,7 @@ classC.fn()
 classC.logger()
 ```
 
-<!-- slide-15 -->
+<!-- slide-17 -->
 <slide :class="slide-top animated zoomIn delay-200 slow white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 在redux中我们经常使用react-redux的connect装饰器即为作用于类的装饰器{.white.zoomIn}
@@ -358,7 +452,7 @@ export default connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [o
 
 __接收一个组件作为输入，输出一个新的组件的组件。__{.build}
 
-<!-- slide-16 -->
+<!-- slide-18 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -411,7 +505,7 @@ export default (params = {}) => WrappedComponent => class HOC extends Component 
 }
 ```
 
-<!-- slide-17 -->
+<!-- slide-19 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 __作用于类属性、方法的装饰器__{.white.zoomIn.font30}
@@ -420,7 +514,7 @@ __作用于类属性、方法的装饰器__{.white.zoomIn.font30}
 
 可以把此时的装饰器理解成是 Object.defineProperty(obj, prop, descriptor) 的语法糖{.tobuild}
 
-<!-- slide-18 -->
+<!-- slide-20 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -432,9 +526,6 @@ __作用于类属性、方法的装饰器__{.white.zoomIn.font30}
 export const funDecorator = (params = { readonly: true }) => (target, prototypeKey, descriptor) => {
   /*
     此处target为类的原型对象，即方法Class.prototype
-    ps：装饰器的本意是要装饰类的实例，但此时实例还未生成，所以只能装饰类的原型
-    装饰器对类的行为的改变，是代码编译时发生的，而不是在运行时。这意味着，装饰器能在编译阶段运行代码。
-    也就是说，装饰器本质就是编译时执行的函数。
    */
   /*
     prototypeKey为要装饰的方法(属性名)
@@ -490,7 +581,15 @@ try {
 }
 ```
 
-<!-- slide-19 -->
+<note>
+假如我们修饰的是实例方法，第一个参数将是原型对象，也就是 Class.prototype。  
+假如是这个静态方法，则第一个参数是构造器 constructor。  
+装饰器对类的行为的改变，是代码编译时发生的，而不是在运行时  
+这意味着，装饰器能在编译阶段运行代码。  
+也就是说，装饰器本质就是编译时执行的函数。
+</note>
+
+<!-- slide-21 -->
 <slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
 
 :::header
@@ -543,3 +642,40 @@ export class ClassE {
 const classE = new ClassE()
 classE.fun({ id: 100 })
 ```
+
+<!-- slide-22 -->
+<slide :class="slide-top animated white" image="https://source.unsplash.com/n9WPPWiPPJw/">
+
+:::header
+执行顺序： {.white.text-shadow}
+:::
+
+有多个参数装饰器时：从最后一个参数依次向前执行
+
+方法和方法参数中参数装饰器先执行。
+
+类装饰器总是最后执行。
+
+方法和属性装饰器，谁在前面谁先执行。因为参数属于方法一部分，所以参数会一直紧紧挨着方法执行。
+
+<!-- slide-23 -->
+<slide :class="slide-top">
+
+:::header
+参考文章 {.text-shadow}
+:::
+
+[tc39 github](https://github.com/tc39/proposal-decorators)
+
+[Decorator 装饰器 | 淘宝前端团队](https://segmentfault.com/p/1210000009968000/read)
+
+[Decorators in ES7](http://www.liuhaihua.cn/archives/115548.html)
+
+[TypeScript装饰器](https://blog.csdn.net/weixin_33859844/article/details/88281455)
+
+[JS 装饰器，一篇就够](https://segmentfault.com/a/1190000014495089)
+
+<!-- slide-24 -->
+<slide :class="aligncenter">
+
+## 谢谢大家 {.animated.tada}
