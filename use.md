@@ -442,7 +442,7 @@ classC.logger()
 在redux中我们经常使用react-redux的connect装饰器即为作用于类的装饰器{.white.zoomIn}
 
 ```js {.tobuild..fadeInUp}
-connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])
+@connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])
 export default class MyComponent extends React.Component {}
 
 // 相当于
